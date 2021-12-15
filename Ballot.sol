@@ -1,7 +1,8 @@
 pragma solidity >=0.4.21 <0.9.0;
+import "./VoterList.sol";
+import "./IUC.sol";
 
-
-contract Ballot{
+contract Ballot is VoterList{
             struct Candidate{
                 uint id;
                 string name;
@@ -10,7 +11,7 @@ contract Ballot{
             Candidate[] public ListOfCandidates;
             uint public totalVote;
             uint VotingTimePeriod;
-            string[] ListofECIMembers;
+            eci[] ListofECIMembers;
             struct Voter{
                 bool authorized;
                 bool hasVoted;
@@ -51,8 +52,8 @@ contract Ballot{
                 
             }
             function GetVoteMap(){
-                for(uint i = o, i<ListOfUsers.length, i++){
-                    return ListOfUsers[i]+
+                for(uint i = o; i<ListOfUsers.length; i++){
+                    return ListOfUsers[i]+ ListOfUsers[i]._voteIndex;
                 } 
             }
             function ConsolidateVote() {

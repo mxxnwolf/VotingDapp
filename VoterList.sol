@@ -1,7 +1,8 @@
 pragma solidity >=0.4.21 <0.9.0;
-contract VoterList{
+contract VoterList is IUC{
             userlist[] ListOfVoters;
-            mapping(UserAddress => UserContractAddress);
+            mapping(address => UserContractAddress);
+            address newIUC = IUC.new("name", 12, "male", userAddress, ECIAddress);
 
             function GetAllVoters() returns UserAddress {
                 for (var i = 0; i < ListOfVoters.length; i++)  {
