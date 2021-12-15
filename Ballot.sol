@@ -3,13 +3,14 @@ pragma solidity >=0.4.21 <0.9.0;
 
 contract Ballot{
             struct Candidate{
+                uint id;
                 string name;
                 uint TotalCount;
             }
             Candidate[] public ListOfCandidates;
             uint public totalVote;
             uint VotingTimePeriod;
-            eci[]  ListofECIMembers;
+            string[] ListofECIMembers;
             struct Voter{
                 bool authorized;
                 bool hasVoted;
@@ -24,30 +25,35 @@ contract Ballot{
                 electionName = _name;
             }
             function getNumberOfCandidates() public view returns(uint){
-                returns ListOfCandidates.lenght;
+                return ListOfCandidates.lenght;
             }
-            function GetMyVote() returns CandidateVote{
-                
+            function GetMyVote() {
+                return CandidateVote;
             }
-            function GetResult() returns TotalVote {
-                
+            function GetResult()  {
+                return TotalVote;
             }
             function CastVote(uint _voteIndex) public  {
                 require(!voters[msg.sender].hasVoted);
                 require(voters[msg.sender].IsRegistred);
 
                 voters[msg.sender].vote = _voteIndex;
-                voters.[msg.sender].hasVoted = true;
+                voters[msg.sender].hasVoted = true;
 
                 ListOfCandidates[_voteIndex].voteCount += 1;
                 totalVote += 1;
             }
             function GetUserVote(UserAddress) CandidateVote{
-                hasVoted false;
-                'error if user is not in list'
-            }
-            function GetVoteMap()retunrs user -> CandidateVote {
+                hasVoted = false;
+                if(Permission == false){
+                    return "You are not autharised to vote";
+                }
                 
+            }
+            function GetVoteMap(){
+                for(uint i = o, i<ListOfUsers.length, i++){
+                    return ListOfUsers[i]+
+                } 
             }
             function ConsolidateVote() {
                 
