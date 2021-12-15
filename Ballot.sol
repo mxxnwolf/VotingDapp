@@ -1,8 +1,6 @@
 pragma solidity >=0.4.21 <0.9.0;
-import "./VoterList.sol";
-import "./IUC.sol";
 
-contract Ballot is VoterList{
+contract Ballot {
             struct Candidate{
                 uint id;
                 string name;
@@ -11,7 +9,7 @@ contract Ballot is VoterList{
             Candidate[] public ListOfCandidates;
             uint public totalVote;
             uint VotingTimePeriod;
-            eci[] ListofECIMembers;
+            address[] ListofECIMembers;
             struct Voter{
                 bool authorized;
                 bool hasVoted;
@@ -21,18 +19,18 @@ contract Ballot is VoterList{
             address public owner;
             string public electionName;
 
-            function Ballot(string _name){
+            function _ballot(string _name) public{
                 owner = msg.sender;
                 electionName = _name;
             }
             function getNumberOfCandidates() public view returns(uint){
-                return ListOfCandidates.lenght;
+                return ListOfCandidates.length;
             }
-            function GetMyVote() {
+            function GetMyVote() public view returns(address) {
                 return CandidateVote;
             }
-            function GetResult()  {
-                return TotalVote;
+            function GetResult() public view returns(uint) {
+                return totalVote;
             }
             function CastVote(uint _voteIndex) public  {
                 require(!voters[msg.sender].hasVoted);
@@ -44,16 +42,17 @@ contract Ballot is VoterList{
                 ListOfCandidates[_voteIndex].voteCount += 1;
                 totalVote += 1;
             }
-            function GetUserVote(UserAddress) CandidateVote{
-                hasVoted = false;
-                if(Permission == false){
+            function GetUserVote(address) public{
+                voters[address].hasVoted = false;
+                bool permission = voters[address].authorised;
+                if(permission == false){
                     return "You are not autharised to vote";
                 }
                 
             }
-            function GetVoteMap(){
-                for(uint i = o; i<ListOfUsers.length; i++){
-                    return ListOfUsers[i]+ ListOfUsers[i]._voteIndex;
+            function GetVoteMap() public view returns(address) {
+                for(uint i = 0; i<ListOfCandidates.length; i++){
+                    return ListOfCandidates[i]+ ListOfCandidates[i]._voteIndex;
                 } 
             }
             function ConsolidateVote() {
