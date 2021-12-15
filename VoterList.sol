@@ -1,7 +1,6 @@
 pragma solidity >=0.4.21 <0.9.0;
 contract VoterList is IUC{
             userlist[] ListOfVoters;
-            mapping(address => UserContractAddress);
             address newIUC = IUC.new("name", 12, "male", userAddress, ECIAddress);
 
             function GetAllVoters() returns UserAddress {
@@ -9,11 +8,11 @@ contract VoterList is IUC{
                     printf(ListOfVoters[i]);
                 }
             }
-            function GetContractAddress(UserAddress) returns UserContractAddress {
-                
+            function GetContractAddress(UserAddress) {
+                return newIUC(userAddress);
             }
-            function GetUserDetails(ContractAddress) returns UserDetails {
-                
+            function GetUserDetails(ContractAddress) {
+                return _myData;
             }
             function IsRegistred(address _user)ownerOnly public {
                 voters[_user].IsRegistred = true;
