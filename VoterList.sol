@@ -1,6 +1,6 @@
 contract VoterList is IUC{
     userlist[] ListOfVoters;
-    address newIUC = IUC.new("name", 12, "male", userAddress, eciMember);
+    address newIUC = IUC.new(_name, _age, _gender, userAddress, eciMember);
 
     function GetAllVoters() returns UserAddress {
         for (var i = 0; i < ListOfVoters.length; i++)  {
