@@ -1,5 +1,3 @@
-pragma solidity >=0.4.21 <0.9.0;
-
 contract Ballot {
             struct Candidate{
                 uint id;
@@ -19,6 +17,13 @@ contract Ballot {
             address public owner;
             string public electionName;
 
+            address public Owner;
+
+            modifier onlyOwner {
+            require(msg.sender == Owner);
+            _;
+            }
+
             function _ballot(string _name) public{
                 owner = msg.sender;
                 electionName = _name;
@@ -27,6 +32,7 @@ contract Ballot {
                 return ListOfCandidates.length;
             }
             function GetMyVote() public view returns(address) {
+                require(hasVoted==true,false);
                 return CandidateVote;
             }
             function GetResult() public view returns(uint) {
